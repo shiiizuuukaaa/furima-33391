@@ -2,16 +2,16 @@
 
 ## users table
 
-| Column             | Type                | Options                 |
-|--------------------|---------------------|-------------------------|
-| last_name          | string              | null: false             |
-| first_name         | string              | null: false             |
-| last_name_kana     | string              | null: false             |
-| first_name_kana    | string              | null: false             |
-| birth_date         | date                | null: false             |
-| nickname           | string              | null: false             |
-| email              | string              | null: false             |
-| password           | string              | null: false             |
+| Column              | Type                | Options                   |
+|---------------------|---------------------|---------------------------|
+| last_name           | string              | null: false               |
+| first_name          | string              | null: false               |
+| last_name_kana      | string              | null: false               |
+| first_name_kana     | string              | null: false               |
+| birth_date          | date                | null: false               |
+| nickname            | string              | null: false               |
+| email               | string              | null: false, unique: true |
+| encrypted_password  | string              | null: false               |
 
 ### Association
 
@@ -31,8 +31,6 @@
 | item_prefecture_id                  | integer    | null: false       |
 | item_scheduled_delivery_id          | integer    | null: false       |
 | price                               | integer    | null: false       |
-| add-tax-price                       | integer    | null: false       |
-| profit                              | integer    | null: false       |
 | user                                | references | foreign_key: true |
 
 ### Association
@@ -45,10 +43,27 @@
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| user_id                             | references | foreign_key: true |
-| item_id                             | references | foreign_key: true |
+| user                                | references | foreign_key: true |
+| item                                | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
+- has_one :order
+
+# addresses table
+
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| postal_code                         | integer    | null: false       |
+| prefecture_id                       | integer    | null: false       |
+| city                                | string     | null: false       |
+| addresses                           | string     | null: false       |
+| building                            | string     |                   |
+| phone_number                        | integer    | null: false       |
+| order                               | references | foreign_key: true |
+
+### Association
+
+- belongs_to :order
