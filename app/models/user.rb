@@ -6,8 +6,7 @@ class User < ApplicationRecord
   
   validates :nickname, presence: true
   validates :email, uniqueness: { case_sensitive: true }
-  validates :password, length: { minimum: 6 },
-            format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i } 
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i } 
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
     validates :first_name
