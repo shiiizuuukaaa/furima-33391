@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   with_options presence: true do
     validates :nickname
     validates :birth_date
@@ -21,5 +21,4 @@ class User < ApplicationRecord
     validates :first_name_kana
     validates :last_name_kana
   end
-  
 end
