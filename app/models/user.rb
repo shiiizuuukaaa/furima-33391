@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :items
+  has_many :orders
+  
   with_options presence: true do
     validates :nickname
     validates :birth_date
@@ -21,4 +24,5 @@ class User < ApplicationRecord
     validates :first_name_kana
     validates :last_name_kana
   end
+
 end
