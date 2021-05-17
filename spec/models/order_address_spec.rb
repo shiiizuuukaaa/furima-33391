@@ -18,6 +18,11 @@ RSpec.describe OrderAddress, type: :model do
     end
 
     context '商品の購入ができない時' do
+      it 'tokenが空だと購入できない' do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include "Token can't be blank"
+      end
       it '郵便番号が空だと購入できない' do
         @order_address.postal_code = nil
         @order_address.valid?
