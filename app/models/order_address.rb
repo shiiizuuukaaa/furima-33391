@@ -9,6 +9,8 @@ class OrderAddress
     validates :city
     validates :addresses
     validates :phone_number, numericality: { message: 'Input only number' }
+    validates :user_id
+    validates :item_id
   end
 
   def save
